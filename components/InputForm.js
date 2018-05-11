@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
  
-import { StyleSheet, View, Button, TextInput, Alert,Text} from 'react-native';
+import { StyleSheet, View, Button, TextInput, Alert,Text,Picker} from 'react-native';
  
 export default class Mynewproject extends Component {
  
@@ -9,7 +9,8 @@ export default class Mynewproject extends Component {
         this.state = { 
             acceleration : '',
             fuelrate : '',
-            co2 : ''
+            co2 : '',
+            fueltype : ''
           }
     }
  
@@ -21,7 +22,7 @@ export default class Mynewproject extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        co2: this.state.co2,
+        co2: (this.state.fueltype * (1 / this.state.fuelrate)).toFixed(0),
         fuelrate: this.state.fuelrate,
         acceleration: this.state.acceleration
        
@@ -33,7 +34,7 @@ export default class Mynewproject extends Component {
   clearInput = () => {
     this.textInputacceleration.clear();
     this.textInputfuelrate.clear();
-    this.textInputco2.clear();
+    // this.textInputco2.clear();
   }
   
  render() {
@@ -42,7 +43,16 @@ export default class Mynewproject extends Component {
  
       <View style={styles.MainContainer}>
  
-          
+      <Picker
+        selectedValue={this.state.fueltype}
+        style={{ height: 50, width: 200 }}
+        onValueChange={(itemValue, itemIndex) => this.setState({fueltype: itemValue})}>
+        <Picker.Item label="Enter Fuel Type" color="grey" />
+        <Picker.Item label="Diesel" value="2650" />
+        <Picker.Item label="Gasoline" value="2290" />
+        <Picker.Item label="E85" value="1610" />
+        <Picker.Item label="E20" value="2380" />
+        </Picker>
             <Text>Acceleration</Text>
           <TextInput 
             underlineColorAndroid = "transparent" 
@@ -61,7 +71,8 @@ export default class Mynewproject extends Component {
             ref={ref => this.textInputfuelrate = ref}
             keyboardType = 'numeric'
             />
-            <Text>CO2</Text>
+            
+            {/* <Text>CO2</Text>
             <TextInput 
             underlineColorAndroid = "transparent" 
             placeholder="Enter value CO2"
@@ -69,7 +80,7 @@ export default class Mynewproject extends Component {
             onChangeText = { ( text ) => { this.setState({ co2: text })} } 
             ref={ref => this.textInputco2 = ref}
             keyboardType = 'numeric'
-            />
+            /> */}
 
           <View style={{marginBottom : 10}}>
  

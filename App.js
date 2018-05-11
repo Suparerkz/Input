@@ -12,7 +12,7 @@ import {
   View,
   TouchableOpacity
 } from 'react-native';
-import InputForm from './android/components/InputForm'
+import InputForm from './components/InputForm'
 
 class App extends Component {
 
