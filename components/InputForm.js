@@ -51,7 +51,7 @@ export default class Mynewproject extends Component {
         <Picker.Item label="Diesel" value="2650" />
         <Picker.Item label="Gasoline" value="2290" />
         <Picker.Item label="E85" value="1610" />
-        <Picker.Item label="E20" value="2380" />
+        <Picker.Item label="E20" value="2320" />
         </Picker>
             <Text>Acceleration</Text>
           <TextInput 
